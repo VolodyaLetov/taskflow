@@ -45,3 +45,98 @@ body {
   max-width: 1100px;
   margin: 0 auto;
 }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.column {
+  background: #f6f7f8;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 420px;
+}
+
+.columnHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 12px;
+  border-bottom: 1px solid #ececec;
+}
+
+.columnHeader h2 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.count {
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid #e1e1e1;
+  background: white;
+}
+
+.columnBody {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.taskCard {
+  background: white;
+  border: 1px solid #eeeeee;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.taskTitle {
+  font-weight: 600;
+}
+
+.taskMeta {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.pill {
+  font-size: 12px;
+  border-radius: 999px;
+  padding: 3px 8px;
+  border: 1px solid #e8e8e8;
+}
+
+.pill--low {
+  opacity: 0.7;
+}
+
+.pill--medium {
+  font-weight: 600;
+}
+
+.pill--high {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.taskActions {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.taskActions button {
+  border: 1px solid #e1e1e1;
+  background: white;
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
