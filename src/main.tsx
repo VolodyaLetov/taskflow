@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { AppLayout } from "./app/layout/AppLayout";
-import { BoardPage } from "./pages/BoardPage";
-import { SettingsPage } from "./pages/SettingsPage";
-import "./styles/App.css";
+import { AppLayout } from "./app/layout/a/ppLayout";
+import { BoardPage } from "./pages/boardPage";
+import { SettingsPage } from "./pages/settingsPage";
+import "./styles/app.css";
 
 const router = createBrowserRouter([
   {
