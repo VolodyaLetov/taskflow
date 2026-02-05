@@ -75,7 +75,14 @@ export function BoardPage() {
   {columnTasks.length === 0 ? (
     <p className="muted">No tasks yet</p>
   ) : (
-    columnTasks.map((t) => <TaskCard key={t.id} task={t} />)
+    columnTasks.map((t) => <TaskCard
+  key={t.id}
+  task={t}
+  onPatch={(id, patch) => actions.patch(id, patch)}
+  onRemove={(id) => actions.remove(id)}
+/>
+
+)
   )}
 </div>
 
