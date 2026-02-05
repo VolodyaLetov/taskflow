@@ -1,5 +1,11 @@
 :root {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
 }
 
 body {
@@ -265,6 +271,11 @@ body {
   border-color: #f0caca;
 }
 
+.iconBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .taskForm {
   margin-top: 12px;
   margin-bottom: 18px;
@@ -301,4 +312,46 @@ body {
   margin: 10px 0 0;
   color: #b00020;
   font-size: 13px;
+}
+
+.editGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.editButtons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.column--over {
+  outline: 2px dashed #cfcfcf;
+  outline-offset: -6px;
+}
+
+.taskCard {
+  position: relative;
+}
+
+.dndDragging {
+  position: relative;
+  z-index: 9999;
+}
+
+.taskWrapper {
+  position: relative;
+}
+
+.dragHandle {
+  cursor: grab;
+  font-weight: bold;
+  padding: 4px;
+  user-select: none;
+}
+
+.dragHandle:active {
+  cursor: grabbing;
 }
