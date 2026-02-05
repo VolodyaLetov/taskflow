@@ -4,6 +4,7 @@ import { TaskCreateForm } from "../features/tasks/TaskCreateForm";
 import { useMemo, useState } from "react";
 import type { TaskPriority } from "../types/task";
 import { TaskFilters } from "../features/tasks/TaskFilters";
+import { TaskCard } from "../features/tasks/TaskCard";
 
 
 
@@ -71,62 +72,13 @@ export function BoardPage() {
               </div>
 
               <div className="columnBody">
-                {columnTasks.length === 0 ? (
-                  <p className="muted">No tasks yet</p>
-                ) : (
-                  columnTasks.map((t) => (
-                    <div key={t.id} className="taskCard">
-                      <div className="taskTitle">{t.title}</div>
+  {columnTasks.length === 0 ? (
+    <p className="muted">No tasks yet</p>
+  ) : (
+    columnTasks.map((t) => <TaskCard key={t.id} task={t} />)
+  )}
+</div>
 
-                      <div className="taskMeta">
-                        <span className={`pill pill--${t.priority}`}>{t.priority}</span>
-                        {t.dueDate && <span className="muted">due {t.dueDate}</span>}
-                      </div>
-
-                      <div className="taskActions">
-                        {t.status !== "todo" && (
-                          <button
-                            className="iconBtn"
-                            onClick={() =>
-                              actions.patch(t.id, {
-                                status: t.status === "done" ? "in_progress" : "todo",
-                              })
-                            }
-                            aria-label="Move left"
-                            title="Move left"
-                          >
-                            ←
-                          </button>
-                        )}
-
-                        {t.status !== "done" && (
-                          <button
-                            className="iconBtn"
-                            onClick={() =>
-                              actions.patch(t.id, {
-                                status: t.status === "todo" ? "in_progress" : "done",
-                              })
-                            }
-                            aria-label="Move right"
-                            title="Move right"
-                          >
-                            →
-                          </button>
-                        )}
-
-                        <button
-                          className="iconBtn danger"
-                          onClick={() => actions.remove(t.id)}
-                          aria-label="Delete"
-                          title="Delete"
-                        >
-                          ✕
-                        </button>
-                      </div>
-                    </div>
-                  ))
-                )}
-              </div>
             </div>
           );
         })}
