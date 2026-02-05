@@ -26,6 +26,10 @@ export function BoardPage() {
         >
           + Quick add
         </button>
+        <button className="btn" onClick={() => actions.clearAll()}>
+  Clear
+</button>
+
       </div>
 
       <div className="board">
