@@ -1,6 +1,10 @@
 import { useTasks } from "../features/tasks/useTasks";
 import type { TaskStatus } from "../types/task";
 import { TaskCreateForm } from "../features/tasks/TaskCreateForm";
+import { useMemo, useState } from "react";
+import type { TaskPriority } from "../types/task";
+import { TaskFilters } from "../features/tasks/TaskFilters";
+
 
 
 const columns: { status: TaskStatus; title: string }[] = [
@@ -12,6 +16,23 @@ const columns: { status: TaskStatus; title: string }[] = [
 export function BoardPage() {
   const { tasks, actions } = useTasks();
 
+  const [query, setQuery] = useState("");
+  const [priority, setPriority] =
+    useState<TaskPriority | "all">("all");
+
+  const visibleTasks = useMemo(() => {
+    const q = query.trim().toLowerCase();
+
+    return tasks.filter((t) => {
+      const matchQuery =
+        q === "" || t.title.toLowerCase().includes(q);
+
+      const matchPriority =
+        priority === "all" || t.priority === priority;
+
+      return matchQuery && matchPriority;
+    });
+  }, [tasks, query, priority]);
   return (
     <section>
       <div className="pageHeader">
@@ -22,6 +43,15 @@ export function BoardPage() {
     actions.add(input);
   }}
 />
+<TaskFilters
+  query={query}
+  priority={priority}
+  onChange={(next) => {
+    setQuery(next.query);
+    setPriority(next.priority);
+  }}
+/>
+
 
         <button className="btn" onClick={() => actions.clearAll()}>
   Clear
@@ -31,7 +61,7 @@ export function BoardPage() {
 
       <div className="board">
         {columns.map((c) => {
-          const columnTasks = tasks.filter((t) => t.status === c.status);
+          const columnTasks = visibleTasks.filter((t) => t.status === c.status);
 
           return (
             <div key={c.status} className="column">
