@@ -1,3 +1,4 @@
+import { useTasks } from "../features/tasks/useTasks";
 import type { TaskStatus } from "../types/task";
 
 const columns: { status: TaskStatus; title: string }[] = [
@@ -7,23 +8,97 @@ const columns: { status: TaskStatus; title: string }[] = [
 ];
 
 export function BoardPage() {
+  const { tasks, actions } = useTasks();
+
   return (
     <section>
-      <h1>Board</h1>
+      <div className="pageHeader">
+        <h1>Board</h1>
+
+        <button
+          className="btn"
+          onClick={() =>
+            actions.add({
+              title: `Task ${tasks.length + 1}`,
+              priority: "medium",
+            })
+          }
+        >
+          + Quick add
+        </button>
+      </div>
 
       <div className="board">
-        {columns.map((c) => (
-          <div key={c.status} className="column">
-            <div className="columnHeader">
-              <h2>{c.title}</h2>
-              <span className="count">0</span>
-            </div>
+        {columns.map((c) => {
+          const columnTasks = tasks.filter((t) => t.status === c.status);
 
-            <div className="columnBody">
-              <p style={{ opacity: 0.7, margin: 0 }}>No tasks yet</p>
+          return (
+            <div key={c.status} className="column">
+              <div className="columnHeader">
+                <h2>{c.title}</h2>
+                <span className="count">{columnTasks.length}</span>
+              </div>
+
+              <div className="columnBody">
+                {columnTasks.length === 0 ? (
+                  <p className="muted">No tasks yet</p>
+                ) : (
+                  columnTasks.map((t) => (
+                    <div key={t.id} className="taskCard">
+                      <div className="taskTitle">{t.title}</div>
+
+                      <div className="taskMeta">
+                        <span className={`pill pill--${t.priority}`}>{t.priority}</span>
+                        {t.dueDate && <span className="muted">due {t.dueDate}</span>}
+                      </div>
+
+                      <div className="taskActions">
+                        {t.status !== "todo" && (
+                          <button
+                            className="iconBtn"
+                            onClick={() =>
+                              actions.patch(t.id, {
+                                status: t.status === "done" ? "in_progress" : "todo",
+                              })
+                            }
+                            aria-label="Move left"
+                            title="Move left"
+                          >
+                            ←
+                          </button>
+                        )}
+
+                        {t.status !== "done" && (
+                          <button
+                            className="iconBtn"
+                            onClick={() =>
+                              actions.patch(t.id, {
+                                status: t.status === "todo" ? "in_progress" : "done",
+                              })
+                            }
+                            aria-label="Move right"
+                            title="Move right"
+                          >
+                            →
+                          </button>
+                        )}
+
+                        <button
+                          className="iconBtn danger"
+                          onClick={() => actions.remove(t.id)}
+                          aria-label="Delete"
+                          title="Delete"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
