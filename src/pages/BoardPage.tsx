@@ -1,5 +1,7 @@
 import { useTasks } from "../features/tasks/useTasks";
 import type { TaskStatus } from "../types/task";
+import { TaskCreateForm } from "../features/tasks/TaskCreateForm";
+
 
 const columns: { status: TaskStatus; title: string }[] = [
   { status: "todo", title: "Todo" },
@@ -15,17 +17,12 @@ export function BoardPage() {
       <div className="pageHeader">
         <h1>Board</h1>
 
-        <button
-          className="btn"
-          onClick={() =>
-            actions.add({
-              title: `Task ${tasks.length + 1}`,
-              priority: "medium",
-            })
-          }
-        >
-          + Quick add
-        </button>
+<TaskCreateForm
+  onCreate={(input) => {
+    actions.add(input);
+  }}
+/>
+
         <button className="btn" onClick={() => actions.clearAll()}>
   Clear
 </button>

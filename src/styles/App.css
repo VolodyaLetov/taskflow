@@ -264,3 +264,41 @@ body {
 .iconBtn.danger {
   border-color: #f0caca;
 }
+
+.taskForm {
+  margin-top: 12px;
+  margin-bottom: 18px;
+}
+
+.taskFormRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.input {
+  border: 1px solid #e1e1e1;
+  background: white;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.btn.primary {
+  border-color: #dcdcdc;
+  font-weight: 600;
+}
+
+.formError {
+  margin: 10px 0 0;
+  color: #b00020;
+  font-size: 13px;
+}
