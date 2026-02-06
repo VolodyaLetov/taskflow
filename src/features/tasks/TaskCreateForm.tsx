@@ -11,12 +11,6 @@ type Props = {
   }) => void;
 };
 
-const priorities: { value: TaskPriority; label: string }[] = [
-  { value: "low", label: "Low" },
-  { value: "medium", label: "Medium" },
-  { value: "high", label: "High" },
-];
-
 export function TaskCreateForm({ onCreate }: Props) {
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState<TaskPriority>("medium");
