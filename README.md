@@ -25,3 +25,10 @@ Create tasks, filter by title/priority, and move tasks across columns with **dra
 - React Router
 - dnd-kit (Drag & Drop)
 - Radix UI Select (custom dropdown)
+
+## ⚙️ Running the project:
+
+taskflow-snowy-zeta.vercel.app
+
+
+
