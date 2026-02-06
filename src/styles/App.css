@@ -390,3 +390,57 @@ a:hover {
     grid-template-columns: 1fr;
   }
 }
+
+.selectTrigger {
+  all: unset;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+
+  color: var(--text);
+  cursor: pointer;
+
+  min-width: 140px;
+}
+
+.selectTrigger:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.selectContent {
+  background: var(--panel);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+
+  padding: 6px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+
+  z-index: 999;
+}
+
+.selectItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 8px 10px;
+  border-radius: 8px;
+
+  cursor: pointer;
+  color: var(--text);
+}
+
+.selectItem:hover {
+  background: rgba(124, 58, 237, 0.15);
+}
+
+.selectItem[data-state="checked"] {
+  background: rgba(124, 58, 237, 0.25);
+}

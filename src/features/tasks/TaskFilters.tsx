@@ -1,4 +1,5 @@
 import type { TaskPriority } from "../../types/task";
+import { PrioritySelect } from "./PrioritySelect";
 
 type Props = {
   query: string;
@@ -21,16 +22,13 @@ export function TaskFilters({ query, priority, onChange }: Props) {
 
       <label className="label">
         Priority
-        <select
-          className="input"
-          value={priority}
-          onChange={(e) => onChange({ query, priority: e.target.value as Props["priority"] })}
-        >
-          <option value="all">All</option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
+        <label className="label">
+          Priority
+          <PrioritySelect
+            value={priority}
+            onChange={(value) => onChange({ query, priority: value })}
+          />
+        </label>
       </label>
     </div>
   );

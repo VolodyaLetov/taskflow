@@ -1,8 +1,14 @@
 import { useState } from "react";
 import type { TaskPriority } from "../../types/task";
+import { PrioritySelect } from "./PrioritySelect";
 
 type Props = {
-  onCreate: (input: { title: string; priority: TaskPriority; dueDate?: string; description?: string }) => void;
+  onCreate: (input: {
+    title: string;
+    priority: TaskPriority;
+    dueDate?: string;
+    description?: string;
+  }) => void;
 };
 
 const priorities: { value: TaskPriority; label: string }[] = [
@@ -53,18 +59,20 @@ export function TaskCreateForm({ onCreate }: Props) {
 
         <label className="label">
           Priority
-          <select className="input" value={priority} onChange={(e) => setPriority(e.target.value as TaskPriority)}>
-            {priorities.map((p) => (
-              <option key={p.value} value={p.value}>
-                {p.label}
-              </option>
-            ))}
-          </select>
+          <PrioritySelect
+            value={priority}
+            onChange={(value) => setPriority(value as TaskPriority)}
+          />
         </label>
 
         <label className="label">
           Due date
-          <input className="input" type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+          <input
+            className="input"
+            type="date"
+            value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
+          />
         </label>
 
         <button className="btn primary" type="submit">
