@@ -22,13 +22,10 @@ export function TaskFilters({ query, priority, onChange }: Props) {
 
       <label className="label">
         Priority
-        <label className="label">
-          Priority
-          <PrioritySelect
-            value={priority}
-            onChange={(value) => onChange({ query, priority: value })}
-          />
-        </label>
+        <PrioritySelect
+          value={priority}
+          onChange={(value) => onChange({ query, priority: value })}
+        />
       </label>
     </div>
   );

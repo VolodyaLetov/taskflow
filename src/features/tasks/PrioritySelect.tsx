@@ -27,7 +27,7 @@ export function PrioritySelect({ value, onChange }: Props) {
 
       <Select.Portal>
         <Select.Content className="selectContent" position="popper">
-          <Select.Viewport>
+          <Select.Viewport className="selectViewport">
             {options.map((opt) => (
               <Select.Item
                 key={opt.value}
